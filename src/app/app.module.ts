@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 // Firebase .....
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
+// import { AngularFirestore } from 'angularfire2/firestore';
 
 // Components
 import { AppComponent } from './app.component';
@@ -14,24 +15,28 @@ import { AppComponent } from './app.component';
 import { KorianIndiaComponent} from './components/korian-india/korian-india.component';
 import { TermsCondComponent } from './components/terms-cond/terms-cond.component';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // Services .....
-import { AuthService } from './service/auth.service';
-
+import { AuthService } from './services/auth.service';
+import { ClientService } from './services/client.serive';
 
 // Firebase configuration object...
 const firebaseConfig = {
-  apiKey: "AIzaSyBJfxho9M9zt5ptusPffZkhf32FZP8LTJk",
-  authDomain: "korianindia.firebaseapp.com",
-  databaseURL: "https://korianindia.firebaseio.com",
-  projectId: "korianindia"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: ""
 };
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     KorianIndiaComponent,
+    NavbarComponent,
     TermsCondComponent
   ],
   imports: [
@@ -42,7 +47,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [ AuthService, AngularFirestore  ],
+  providers: [ AuthService, AngularFireDatabase, ClientService  ],
   exports: [],
   bootstrap: [AppComponent]
 })

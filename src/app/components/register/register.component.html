@@ -5,7 +5,50 @@
           <h1 class="text-center pb-4 pt-3">
             <span class="text-primary"><i class="fa fa-lock"></i> Client Panel</span> Register
           </h1>
-          <form (submit)="onSubmit()">
+          <form #registerForm="ngForm" (submit)="onSubmit(registerForm)">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" name="name" [(ngModel)]="client.name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Father's Name</label>
+                <input type="text" name="fatherName" [(ngModel)]="client.fatherName" class="form-control" required>
+              </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" [(ngModel)]="client.dob" class="form-control" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Mobile No</label>
+                <input type="text" name="mobileNo" [(ngModel)]="client.mobileNo" class="form-control" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label>Locality</label>
+                <input type="text" name="locality" [(ngModel)]="client.locality" class="form-control" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label>Pincode</label>
+                  <input type="text" name="pincode" [(ngModel)]="client.pincode" class="form-control" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="email">State</label>
+                <select name="state" [(ngModel)]="client.state" class="form-control" required>
+                  <option value="0">Select a state</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label>City</label>
+                  <select name="city" [(ngModel)]="client.city" class="form-control" required>
+                    <option value="0">Select a city</option>
+                  </select>
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" name="email" [(ngModel)]="email" class="form-control" required>
@@ -14,9 +57,11 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" [(ngModel)]="password" class="form-control" required>
             </div>
-            <input type="submit" value="Register" class="btn btn-primary btn-block">
+            <input type="submit" value="Register" class="btn btn-primary btn-block" 
+              [disabled]="!registerForm.form.valid">
           </form>
         </div>
       </div>
     </div>
+    <span (click)="getClients()">Get Clients</span> 
   </div>
